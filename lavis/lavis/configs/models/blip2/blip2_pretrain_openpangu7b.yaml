@@ -1,0 +1,24 @@
+model:
+  arch: blip2_pangu
+  load_finetuned: False
+
+  pretrained: ""  # 这里应该是path 
+  finetuned: ""
+
+  # generation configs
+  prompt: ""
+
+
+preprocess:
+    vis_processor:
+        train:
+          name: "blip_image_train"
+          image_size: 224
+        eval:
+          name: "blip_image_eval"
+          image_size: 224
+    text_processor:
+        train:
+          name: "blip_caption"
+        eval:
+          name: "blip_caption"
