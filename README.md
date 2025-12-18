@@ -1,5 +1,5 @@
 """
-    copyright: Uestc-ChenQi
+    by: Uestc-ChenQi
 """
 
 ### 代码结构与说明：
