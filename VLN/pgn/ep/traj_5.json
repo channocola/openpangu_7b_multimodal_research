@@ -1,0 +1,107 @@
+{
+    "episode_id": "5",
+    "instruction": "You are facing towards the closed door right now, turn back, you can find a washroom infront of you, enter into the washroom, stand in between the bath tub and the wash basin, that would be your end point.",
+    "turn_angle": 15,
+    "steps": [
+        {
+            "step": 0,
+            "action": 2,
+            "image_path": "step_0000_act_2.jpg"
+        },
+        {
+            "step": 1,
+            "action": 2,
+            "image_path": "step_0001_act_2.jpg"
+        },
+        {
+            "step": 2,
+            "action": 2,
+            "image_path": "step_0002_act_2.jpg"
+        },
+        {
+            "step": 3,
+            "action": 2,
+            "image_path": "step_0003_act_2.jpg"
+        },
+        {
+            "step": 4,
+            "action": 2,
+            "image_path": "step_0004_act_2.jpg"
+        },
+        {
+            "step": 5,
+            "action": 2,
+            "image_path": "step_0005_act_2.jpg"
+        },
+        {
+            "step": 6,
+            "action": 2,
+            "image_path": "step_0006_act_2.jpg"
+        },
+        {
+            "step": 7,
+            "action": 2,
+            "image_path": "step_0007_act_2.jpg"
+        },
+        {
+            "step": 8,
+            "action": 2,
+            "image_path": "step_0008_act_2.jpg"
+        },
+        {
+            "step": 9,
+            "action": 1,
+            "image_path": "step_0009_act_1.jpg"
+        },
+        {
+            "step": 10,
+            "action": 1,
+            "image_path": "step_0010_act_1.jpg"
+        },
+        {
+            "step": 11,
+            "action": 1,
+            "image_path": "step_0011_act_1.jpg"
+        },
+        {
+            "step": 12,
+            "action": 1,
+            "image_path": "step_0012_act_1.jpg"
+        },
+        {
+            "step": 13,
+            "action": 1,
+            "image_path": "step_0013_act_1.jpg"
+        },
+        {
+            "step": 14,
+            "action": 1,
+            "image_path": "step_0014_act_1.jpg"
+        },
+        {
+            "step": 15,
+            "action": 1,
+            "image_path": "step_0015_act_1.jpg"
+        },
+        {
+            "step": 16,
+            "action": 3,
+            "image_path": "step_0016_act_3.jpg"
+        },
+        {
+            "step": 17,
+            "action": 1,
+            "image_path": "step_0017_act_1.jpg"
+        },
+        {
+            "step": 18,
+            "action": 1,
+            "image_path": "step_0018_act_1.jpg"
+        },
+        {
+            "step": 19,
+            "action": 0,
+            "image_path": "step_0019_act_0.jpg"
+        }
+    ]
+}

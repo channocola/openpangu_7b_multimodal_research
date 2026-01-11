@@ -1,0 +1,55 @@
+run:
+  output_dir: "/data1/blip2pangu_nav/smoke_test_nav"
+  device: "npu"                # or cuda/cpu
+  npu: 0                     # local rank
+  distributed: True
+  use_deepspeed: True
+  deepspeed_config: "/root/WorkSpace/pgn/configs/deepspeed_zero2.json"
+
+  max_epoch: 10
+  init_lr: 1e-4
+  min_lr: 1e-5
+  weight_decay: 0.05
+  lr_sched: linear_warmup_cosine_lr  # 见 runner.py 的 LR_SCHEDULERS
+  lr_decay_rate: 0.9                 # 仅 linear_warmup_step_lr 生效
+  warmup_steps: 2000
+  warmup_lr: 1e-6
+
+  amp: False
+  accum_grad_iters: 1    # 不进行梯度积累，每个训练步都更新
+  batch_size_train: 1
+  batch_size_eval: 1
+  num_workers: 4
+  log_freq: 50
+
+  train_splits: [train]
+  # valid_splits: [val]  # 没有配置验证
+  # test_splits: [test]
+  use_dist_eval_sampler: True
+  evaluate: False   # 这是仅验证模式（可以用来跑测试）
+  resume_ckpt_path: null # 这里可以配置断点续训，注意，此处的优先级比下述统一模型加载优先级更高
+
+  dataset_ratios: null       # 多数据集训练时可用
+  train_dataset_ratios: null
+
+
+  world_size: 8
+  dist_url: "env://"
+
+model:
+  pretrained_ckpt_path: "/data1/blip2pangu_checkpoint_continue_train/20260104205/checkpoint_9.pth"
+  # optional:
+  pretrained_strict: True
+  # optional overrides (auto-disabled when pretrained_ckpt_path is set unless you force them):
+  load_llm_pretrained: False
+  load_vision_pretrained: False
+  load_qformer_pretrained: False
+
+datasets:
+  train:
+    json_dir: /data1/test_data/jsons
+    image_root_dir: /data1/test_data/images
+    history_frames: 4 # total images per sample = history_frames + 1
+  # val:
+    # json_dir: /path/to/val/jsons
+    # image_root_dir: /path/to/images

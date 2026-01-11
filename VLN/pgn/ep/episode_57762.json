@@ -1,0 +1,21 @@
+{
+    "instruction": "We'll start by looking at a mirror in front of us, and a chair as well. Let's walk to the left side of the chair, and then let's proceed to move towards the opened doorway that we see to the left of the mirror. Once you're in the doorway, this will be our destination.",
+    "trajectory": [],
+    "actions": [
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        3,
+        1,
+        0
+    ]
+}

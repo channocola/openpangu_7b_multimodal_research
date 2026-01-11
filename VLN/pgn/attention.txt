@@ -1,0 +1,12 @@
+加载json需要随机加载   # ddpsampler在训练时确实是shuffle，确实为随机加载
+
+
+self.transform这个预处理我想用processor替代    # Done
+
+我默认batch_size为1 但是我在想如果bs>1该怎么写     # Done
+
+
+runner的dataloader在训练时对数据的划分目前不明确，不确定在训练过程中有无训练/验证的划分
+
+vision_tower会自己加载权重，llm也会自己加载权重，要求q_former和投影层加载多模态预训练的权重，需要在权重文件中
+搜索key值加载，在此基础上进行训练（最好是把微调的adapter层权重也load上来）
