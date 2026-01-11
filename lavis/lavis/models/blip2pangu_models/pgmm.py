@@ -85,10 +85,22 @@ class Blip2PanGu(Blip2Base):
             param.requires_grad = False       # 1 多模态流程中盘古冻结不参与训练 2 如需训练，微调不应选择全量微调，应使用PEFT
 
         print("Checking LLM freeze status:")
+
         for name, param in self.llm.named_parameters():
             if param.requires_grad:
                 print(f"Warning: {name} is NOT frozen!")
-                # break # 只打印第一个看看就行
+                break # 只打印第一个看看就行
+
+        # #adapter微调用，确保只有adapter层的参数是可训练的
+        # for name, param in self.llm.named_parameters():
+        #     if "adapter" in name:  # 假设 Adapter 层的参数名中包含 "adapter"
+        #         param.requires_grad = True
+        #         #print(f"\n-------------Warning: {name} is NOT frozen!-------------")
+        #         # print("[INFO] Adapter parameters are trainable.")
+        #     else:
+        #         param.requires_grad = False
+        
+                
 
         self.vision_frontend = Blip2QformerForPanGuMM( 
             img_size=mm_config.image_size,
@@ -126,7 +138,13 @@ class Blip2PanGu(Blip2Base):
         self.tokenizer.padding_side = "right"  # 其实没必要，盘古默认的paddingside就是右边
 
         text = [t  for t in samples["text_input"]] # 这种组织方式似乎与训练数据集数据组织方式有关
+
         # 注意此处与blip2_opt的逻辑是不同的
+        if self.tokenizer.eos_token is None:
+            eos_token_str = self.tokenizer.decode(self.tokenizer.eos_token_id)
+        else:
+            eos_token_str = self.tokenizer.eos_token
+        text = [t + eos_token_str for t in text]
 
         pg_tokens = self.tokenizer(
             text,
@@ -186,8 +204,8 @@ class Blip2PanGu(Blip2Base):
         """
         image = samples["image"]
         with torch.npu.amp.autocast( 
-            # enabled=(self.device != torch.device("cpu"))
             enabled = False
+            # enabled = True 推理打开
  
         ):          
             
